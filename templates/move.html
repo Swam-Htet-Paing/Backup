@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Page</title>
+    <link rel="stylesheet" href="../static/control.css">
+    <script src="https://kit.fontawesome.com/bb17e47804.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="center">Control Page</h1>
+            <div class="box">
+                <img id="img" class="imgcenter" src="{{ url_for('video_feed')}}" alt="Camera Feed">
+            </div>
+    <div class="row">   
+        <div class="col">
+            <button class="control" id="up"><i class="fa-solid fa-caret-up"></i></button>
+            <div class="row">
+                <button class="control" id="left"><i class="fa-solid fa-caret-left"></i></button>
+                <button class="control" id="stop"><i>stop</i></button>
+                <button class="control" id="right"><i class="fa-solid fa-caret-right"></i></button>
+            </div>
+            <button class="control" id="down"><i class="fa-solid fa-caret-down"></i></button>
+        </div>
+        <div class="col">
+            <button class="control" id="tilt-U"><i class="fa-solid fa-caret-up"></i></button>
+            <div class="row">
+                <button class="control" id="pan-L"><i class="fa-solid fa-caret-left"></i></button>
+                <button class="control" id="reset"><i>reset</i></button>
+                <button class="control" id="pan-R"><i class="fa-solid fa-caret-right"></i></button>
+            </div>
+            <button class="control" id="tilt-D"><i class="fa-solid fa-caret-down"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <button class="IO" id="on-off" style="margin: 15px;">Camera on/off</button>
+        <button class="IO" id="light" style="margin: 15px;">Light On/Off</button>
+        <img id="led" src="../static/media/off.png">
+    </div>
+
+    <script>
+        const button = document.getElementById('on-off');
+        const img = document.getElementById('img');
+        const led_switch = document.getElementById('light');
+        const bulb = document.getElementById('led');
+        let cameraOn = true;
+        let isBright = true;
+        button.addEventListener('click', () => {
+            cameraOn = !cameraOn;
+            if (cameraOn){   
+                img.src = '{{ url_for('video_feed')}}';
+            }
+            else{
+                img.src = '../static/media/black.png';
+            }
+        });
+        function sendCmd(command) {
+    fetch('/' + command, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ command: command })
+    }).then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
+        led_switch.addEventListener('click', () => {
+            if (isBright){
+            
+                bulb.src = '../static/media/on.png';
+                sendCmd('p');
+            }
+            else{
+                bulb.src = '../static/media/off.png';
+                sendCmd('o');
+            }
+            isBright = !isBright;
+        });
+    </script>        
+    <script src="../static/js/send.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+img {
+    width: 100%; /* Maintain image width to fill container */
+    height: auto; /* Let the image height adjust automatically */
+  }
+  
+  .box {
+    height: 50%;
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .box img {
+    border: 5px solid grey;
+    border-radius: 5px;
+  }
+
+.control {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+  }
+  
+.IO {
+    width: auto;
+    height: 60%;
+}
+  
+#led {
+    width: 60px;
+    height: 100%;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.center {
+    text-align: center;
+}

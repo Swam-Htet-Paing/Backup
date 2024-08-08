@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <h1>Login Page</h1>
+        <form action="{{ url_for('login')}}" method="post" autocomplete="off">
+        <div>{{ msg }}</div>
+        <input type="text" name="username" placeholder="enter username" class="textbox" id="username" required>
+        </br>
+        <input type="password" name="password" placeholder="enter password" class="textbox" id="password" required>
+        <input type="checkbox" id="togglePassword"> Show Password
+        </br>
+        <input type="submit" class="btn" value="Login">
+        </form>
+        <p>Click <a href="{{  url_for('register')  }}">here</a> to sign up</p>
+    </div>
+    <script>
+        // JavaScript to toggle the password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('change', function() {
+            // Toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // Toggle the eye icon (optional)
+            this.textContent = type === 'password' ? 'Show Password' : 'Hide Password';
+        });
+    </script>
+</body>
+</html>

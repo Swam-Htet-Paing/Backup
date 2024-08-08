@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <title>Login form</title>
+    <link rel="stylesheet" href="../static/style2.css">
+    <link rel="icon" type="image/png" href="images/2.png">
+    <script src="https://kit.fontawesome.com/bb17e47804.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-in">
+            <form action="/login" method="post">
+                <h1>System Login</h1>
+                <span>{{ msg }}</span>
+                <input type="password" name="password" required placeholder="Password" id="signup-pass">
+                <i class="fa-solid fa-eye-slash signup__eye" id="signup-eye"></i>
+                <input type="submit" class="signup__button" value="Enter">
+            </form>
+    </div>
+
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
